@@ -1,0 +1,28 @@
+@import './../../assets/scss/variables.scss';
+
+.header {
+  background-color: $navbar-color;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  height: 60px;
+  font-family: $font-quicksand;
+  font-weight: 300;
+
+  &__link {
+    color: #fff;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin-left: 30px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &--home {
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+}

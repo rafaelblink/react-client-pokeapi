@@ -1,0 +1,11 @@
+.pokemon-wrapper {
+  margin: 40px 10vw 0 10vw;
+
+  &__list {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    align-items: stretch;
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+}
