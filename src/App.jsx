@@ -1,17 +1,19 @@
 // COMPONENTS
 import React from 'react';
-import Header from './components/header/header.component';
 // IMPORTS
 import './App.scss';
 import Routes from './Routes';
+import Navbar from './components/navbar/navbar.component';
 
 const App = () => (
-  <div className='app'>
-    <Header className='app__header' />
+  <main className='app'>
+    <header>
+      <Navbar className='app__navbar' />
+    </header>
     <div className='app__wrapper'>
       <Routes />
     </div>
-  </div>
+  </main>
 );
 
 export default App;

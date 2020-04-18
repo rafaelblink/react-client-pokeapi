@@ -1,0 +1,50 @@
+@import './../../assets/scss/variables.scss';
+$shadow-image: 10px 0px 0px;
+.card {
+  &__image-container {
+    display: grid;
+    grid-template-columns: auto;
+    justify-items: center;
+
+    img {
+      margin-top: 12px;
+      margin-bottom: 20px;
+      border-radius: 100px;
+      border: 9px solid #f1f2f6;
+      padding: 2px;
+      height: 150px;
+      box-shadow: 10px 0px 0px $primary-color;
+
+      &.black {
+        box-shadow: $shadow-image $pokemon-black;
+      }
+      &.blue {
+        box-shadow: $shadow-image $pokemon-blue;
+      }
+      &.brown {
+        box-shadow: $shadow-image $pokemon-brown;
+      }
+      &.gray {
+        box-shadow: $shadow-image $pokemon-gray;
+      }
+      &.green {
+        box-shadow: $shadow-image $pokemon-green;
+      }
+      &.pink {
+        box-shadow: $shadow-image $pokemon-pink;
+      }
+      &.purple {
+        box-shadow: $shadow-image $pokemon-purple;
+      }
+      &.red {
+        box-shadow: $shadow-image $pokemon-red;
+      }
+      &.white {
+        box-shadow: $shadow-image $pokemon-white;
+      }
+      &.yellow {
+        box-shadow: $shadow-image $pokemon-yellow;
+      }
+    }
+  }
+}

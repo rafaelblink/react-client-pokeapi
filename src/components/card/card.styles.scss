@@ -6,33 +6,69 @@
   box-shadow: 0px 0px 3px #bfbfbf;
   font-family: $font-quicksand;
   display: grid;
+  cursor: pointer;
 
   &:hover {
-    box-shadow: 0px 0px 10px #bfbfbf;
-    transition: all 1s linear;
+    box-shadow: 0px 0px 13px 4px $primary-color;
+    transition: all 1s ease;
+  }
+
+  &__hp {
+    justify-self: self-end;
+    margin-top: 10px;
+    margin-right: 10px;
+
+    &__icon {
+      height: 15px;
+      margin-right: 5px;
+      color: $danger-color;
+    }
+    &__amount {
+      font-weight: 700;
+      font-size: 1.6em;
+    }
+    &__name {
+      color: silver;
+    }
   }
 
   &__title {
-    font-weight: 400;
+    font-family: $font-VT;
     font-size: 1.5em;
     text-transform: capitalize;
     color: $primary-color;
     text-align: center;
+    margin-bottom: 5px;
   }
 
-  &__image-container {
-    display: grid;
-    grid-template-columns: auto;
-    justify-items: center;
+  &__separator {
+    height: 2px;
+    background-color: silver;
+    width: 200px;
+    justify-self: center;
+    border-radius: 30px;
+  }
 
-    img {
-      margin-top: 20px;
-      margin-bottom: 20px;
-      border-radius: 100px;
-      border: 9px solid #f1f2f6;
-      padding: 2px;
-      height: 150px;
-      box-shadow: 10px 0px 0px $primary-color;
+  &__data {
+    font-family: $font-VT;
+    display: grid;
+    grid-template-columns: auto auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    &__column {
+      justify-self: center;
+      text-align: center;
+
+      &__title {
+        font-size: 2em;
+        // color: silver;
+      }
+
+      &__name {
+        // color: $danger-color;
+        color: silver;
+      }
     }
   }
 }
