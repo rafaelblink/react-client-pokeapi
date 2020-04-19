@@ -3,6 +3,7 @@ import axios from 'axios';
 import Card from './../../components/card/card.component';
 import './pokemons.styles.scss';
 import { Link } from 'react-router-dom';
+import Button from '../../components/button/button.component';
 
 class PokemonsPage extends React.Component {
   constructor() {
@@ -11,11 +12,13 @@ class PokemonsPage extends React.Component {
       isLoaded: false,
       error: null,
       pokemons: [],
-      quantityPage: 8,
+      quantityPage: 4,
       skip: 0,
+      currentPage: 0,
     };
   }
   componentDidMount() {
+    this.setState({ currentPage: 1 });
     this.request(this.state.quantityPage, this.state.skip);
   }
 
@@ -28,7 +31,7 @@ class PokemonsPage extends React.Component {
       const pokemonDetailArray = await pokemonAllRequest.data.results.map(
         async ({ name }) => (await this.getPokemonDetail(name)).data
       );
-      await Promise.all(pokemonDetailArray).then(
+      Promise.all(pokemonDetailArray).then(
         (pokemonsResult) => {
           this.setState({
             pokemons: pokemonsResult,
@@ -60,12 +63,34 @@ class PokemonsPage extends React.Component {
     return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
   }
 
+  handlePaginationNext = () => {
+    let { currentPage, quantityPage, skip } = this.state;
+    skip = skip + quantityPage;
+    currentPage++;
+    this.setState({
+      skip,
+      currentPage,
+    });
+    this.request(this.state.quantityPage, skip);
+  };
+
+  handlePaginationBack = () => {
+    let { currentPage, quantityPage, skip } = this.state;
+    skip = skip - quantityPage;
+    currentPage--;
+    this.setState({
+      skip,
+      currentPage,
+    });
+    this.request(this.state.quantityPage, skip);
+  };
+
   render() {
     let { pokemons, isLoaded, error } = this.state;
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div className='container'>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div className='container'>Loading...</div>;
     } else {
       return (
         <div className='pokemon-wrapper container'>
@@ -76,10 +101,14 @@ class PokemonsPage extends React.Component {
               </Link>
             ))}
           </div>
-          <ul>
-            <li>1</li>
-            <li>2</li>
-          </ul>
+          <div className='pokemon-wrapper__pagination'>
+            <Button
+              title='Back'
+              disabled={this.state.currentPage === 1}
+              onClick={this.handlePaginationBack}
+            />
+            <Button title='Next' onClick={this.handlePaginationNext} />
+          </div>
         </div>
       );
     }

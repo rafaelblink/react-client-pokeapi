@@ -15,9 +15,6 @@ const Navbar = () => (
       <Link to='/pokemons' className='navbar__link'>
         Pokemons
       </Link>
-      <Link to='/about' className='navbar__link'>
-        About Me
-      </Link>
     </div>
   </nav>
 );

@@ -1,28 +1,53 @@
 @import './../../assets/scss/variables.scss';
 
-.pokemon-detail-wrapper {
-  display: grid;
-  grid-template-columns: 27vw auto;
-  background: darken($primary-color, 12%);
-  padding: 15px 0;
-  font-family: $font-quicksand;
-  color: #fff;
+$title-size: 2em;
 
-  &__column {
+.pokemon-detail {
+  font-family: $font-quicksand;
+  .pokemon-detail-wrapper {
     display: grid;
-    &.details {
-      grid-template-rows: 25px auto;
+    grid-template-columns: 27vw auto;
+    background: darken($primary-color, 12%);
+    padding: 15px 0;
+    color: #fff;
+
+    &__column {
+      display: grid;
+      > h2 {
+        font-size: $title-size;
+        font-weight: 600;
+      }
+      &.details {
+        align-self: center;
+        row-gap: 15px;
+      }
+      &__title {
+        color: #fff;
+        justify-self: center;
+        font-size: $title-size;
+        text-transform: capitalize;
+        font-weight: 600;
+      }
+      &__abilities {
+        margin-top: 5px;
+        li:not(:first-child) {
+          margin-top: 15px;
+        }
+        h2 {
+          color: $secondary-color;
+        }
+      }
     }
+
+    //   &__column {
+    //     display: grid;
+    //   }
+  }
+  .pokemon-detail-describe {
     &__title {
-      color: #fff;
-      justify-self: center;
-      font-size: 1.6em;
-      text-transform: capitalize;
+      font-size: $title-size;
+      color: $primary-color;
       font-weight: 600;
     }
   }
-
-  //   &__column {
-  //     display: grid;
-  //   }
 }

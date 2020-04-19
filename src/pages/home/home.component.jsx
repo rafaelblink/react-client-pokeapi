@@ -4,7 +4,7 @@ import './home.component.scss';
 class HomePage extends React.Component {
   render() {
     return (
-      <div>
+      <div className='container'>
         <h1>Home</h1>
       </div>
     );

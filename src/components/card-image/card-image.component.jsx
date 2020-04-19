@@ -10,7 +10,8 @@ class CardImage extends React.Component {
     };
   }
   componentDidMount() {
-    this.getPokemonColor(this.props.id);
+    const { id } = this.props;
+    if (id) this.getPokemonColor(id);
   }
 
   async getPokemonColor(id) {

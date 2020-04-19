@@ -3,9 +3,8 @@ import './card.styles.scss';
 import { ReactComponent as FireIcon } from './../../assets/img/fire-solid.svg';
 
 import CardImage from './../card-image/card-image.component';
-import { Link } from 'react-router-dom';
 
-const Card = ({ pokemon, ...otherProps }) => {
+const Card = ({ pokemon }) => {
   const { id, name, weight, height, sprites } = pokemon;
   // GETTING POKEMON'S HP
   const { base_stat } = pokemon.stats.find(

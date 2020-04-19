@@ -11,14 +11,22 @@ class PokemonDetailPage extends React.Component {
       error: null,
       pokemon: null,
       abilities: [],
+      forms: [],
     };
   }
   async getPokemonDetail(name) {
     return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
   }
 
-  async getPokemonAbilities(url) {
-    return await axios.get(url);
+  //   async getPokemonAbilities(url) {
+  //     return await axios.get(url);
+  //   }
+
+  setError(error) {
+    this.setState({
+      isLoaded: true,
+      error,
+    });
   }
 
   componentDidMount() {
@@ -31,21 +39,34 @@ class PokemonDetailPage extends React.Component {
         this.props.match.params.name
       );
       const pokemonAbilitiesArray = await pokemonRequest.data.abilities.map(
-        async ({ ability }) =>
-          await (await this.getPokemonAbilities(ability.url)).data
+        async ({ ability }) => (await axios.get(ability.url)).data
       );
-      Promise.all(pokemonAbilitiesArray).then((response) => {
-        this.setState({
-          abilities: response,
-          isLoaded: true,
-        });
-      });
+
+      const pokemonFormsArray = await pokemonRequest.data.forms.map(
+        async ({ url }) => (await axios.get(url)).data
+      );
+
+      const promisesAbilities = Promise.all(pokemonAbilitiesArray);
+      const promisesForms = Promise.all(pokemonFormsArray);
+
+      Promise.all([promisesAbilities, promisesForms]).then(
+        (result) => {
+          this.setState({
+            abilities: result[0],
+            forms: result[1],
+          });
+        },
+        (error) => {
+          this.setError(error);
+        }
+      );
       this.setState({ pokemon: pokemonRequest.data, isLoaded: true });
-    } catch (error) {}
+    } catch (error) {
+      this.setError(error);
+    }
   }
   render() {
-    let { pokemon, isLoaded, error } = this.state;
-
+    let { pokemon, forms, abilities, isLoaded, error } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -53,31 +74,37 @@ class PokemonDetailPage extends React.Component {
     } else {
       const { id, sprites, name } = pokemon;
       return (
-        <div className='pokemon-detail-wrapper'>
-          <div className='pokemon-detail-wrapper__column'>
-            <CardImage id={id} sprite={sprites.front_default} />
-            <h1 className='pokemon-detail-wrapper__column__title'>{name}</h1>
+        <div className='pokemon-detail'>
+          <div className='pokemon-detail-wrapper'>
+            <div className='pokemon-detail-wrapper__column'>
+              <CardImage id={id} sprite={sprites.front_default} />
+              <h1 className='pokemon-detail-wrapper__column__title'>{name}</h1>
+            </div>
+            <div className='pokemon-detail-wrapper__column details'>
+              <h2>Abilities</h2>
+              <ul className='pokemon-detail-wrapper__column__abilities'>
+                {abilities.map((ability) => {
+                  const { name } = ability.names.find(
+                    (nameObj) => nameObj.language.name === 'en'
+                  );
+                  const effect = ability.effect_entries.map(
+                    (effectObj) => effectObj.effect
+                  );
+                  return (
+                    <li key={ability.id}>
+                      <h2>{name}</h2>
+                      <p>{effect}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
-          <div className='pokemon-detail-wrapper__column details'>
-            <h2>Abilities</h2>
-
-            <ul>
-              {this.state.abilities.map((ability) => {
-                const { name } = ability.names.find(
-                  (nameObj) => nameObj.language.name === 'en'
-                );
-                const effect = ability.effect_entries.map(
-                  (effectObj) => effectObj.effect
-                );
-
-                return (
-                  <li key={ability.id}>
-                    <h2>{name}</h2>
-                    <p>{effect}</p>
-                  </li>
-                );
-              })}
-            </ul>
+          <div className='pokemon-detail-describe container'>
+            <h2 className='pokemon-detail-describe__title'>Forms</h2>
+            {forms.map((form) => (
+              <p key='form.id'>{form.version_group.name}</p>
+            ))}
           </div>
         </div>
       );
