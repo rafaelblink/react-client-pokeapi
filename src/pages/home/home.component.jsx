@@ -2,10 +2,6 @@ import React from 'react';
 import './home.component.scss';
 
 class HomePage extends React.Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div>

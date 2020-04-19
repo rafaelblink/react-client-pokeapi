@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Card from './../../components/card/card.component';
 import './pokemons.styles.scss';
+import { Link } from 'react-router-dom';
 
 class PokemonsPage extends React.Component {
   constructor() {
@@ -10,15 +11,20 @@ class PokemonsPage extends React.Component {
       isLoaded: false,
       error: null,
       pokemons: [],
+      quantityPage: 8,
+      skip: 0,
     };
   }
   componentDidMount() {
-    this.request();
+    this.request(this.state.quantityPage, this.state.skip);
   }
 
-  async request() {
+  async request(quantityPage, skip) {
     try {
-      const pokemonAllRequest = await this.getPokemonList(0, 12);
+      this.setState({
+        isLoaded: false,
+      });
+      const pokemonAllRequest = await this.getPokemonList(skip, quantityPage);
       const pokemonDetailArray = await pokemonAllRequest.data.results.map(
         async ({ name }) => (await this.getPokemonDetail(name)).data
       );
@@ -62,12 +68,18 @@ class PokemonsPage extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <div className='pokemon-wrapper'>
+        <div className='pokemon-wrapper container'>
           <div className='pokemon-wrapper__list'>
             {pokemons.map((pokemon) => (
-              <Card key={pokemon.name} pokemon={pokemon} />
+              <Link key={pokemon.name} to={`/pokemons/${pokemon.name}`}>
+                <Card pokemon={pokemon} />
+              </Link>
             ))}
           </div>
+          <ul>
+            <li>1</li>
+            <li>2</li>
+          </ul>
         </div>
       );
     }

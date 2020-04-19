@@ -1,0 +1,28 @@
+@import './../../assets/scss/variables.scss';
+
+.pokemon-detail-wrapper {
+  display: grid;
+  grid-template-columns: 27vw auto;
+  background: darken($primary-color, 12%);
+  padding: 15px 0;
+  font-family: $font-quicksand;
+  color: #fff;
+
+  &__column {
+    display: grid;
+    &.details {
+      grid-template-rows: 25px auto;
+    }
+    &__title {
+      color: #fff;
+      justify-self: center;
+      font-size: 1.6em;
+      text-transform: capitalize;
+      font-weight: 600;
+    }
+  }
+
+  //   &__column {
+  //     display: grid;
+  //   }
+}

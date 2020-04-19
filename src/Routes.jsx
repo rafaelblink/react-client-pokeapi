@@ -7,10 +7,8 @@ import PokemonsPage from './pages/pokemons/pokemons.component';
 const Routes = () => (
   <Switch>
     <Route exact path='/' component={HomePage} />
-    <Route path='/pokemons' component={PokemonsPage} />
-    <Route path='/pokemon-detail/:name' component={PokemonDetailPage} />
-    <Route path='/pokemons' component={PokemonDetailPage} />
-    <Route path='/item-detail/:name' component={PokemonDetailPage} />
+    <Route exact path='/pokemons' component={PokemonsPage} />
+    <Route path='/pokemons/:name' component={PokemonDetailPage} />
     <Route path='/about-me' component={PokemonDetailPage} />
   </Switch>
 );
