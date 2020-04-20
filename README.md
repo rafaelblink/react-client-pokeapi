@@ -25,6 +25,8 @@ Em outra janela
 yarn cypress
 ```
 
+Ao abrir a janela do CLI do cypress, clicar em "Run all specs".
+
 ## DEMO
 
 https://pacific-springs-96260.herokuapp.com
