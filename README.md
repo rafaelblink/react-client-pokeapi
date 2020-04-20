@@ -12,6 +12,15 @@ yarn install && yarn start
 
 ## Rodando os testes E2E
 
+Em uma janela do terminal
+
+```bash
+cd react-client-pokeapi
+yarn start
+```
+
+Em outra janela
+
 ```bash
 yarn cypress
 ```
