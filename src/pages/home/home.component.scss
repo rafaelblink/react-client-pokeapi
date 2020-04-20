@@ -1,0 +1,9 @@
+@import './../../assets/scss/variables.scss';
+
+.home {
+  font-family: $font-quicksand;
+  h1 {
+    font-size: $title-size;
+    margin-bottom: 10px;
+  }
+}

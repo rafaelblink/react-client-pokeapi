@@ -12,7 +12,7 @@ class PokemonsPage extends React.Component {
       isLoaded: false,
       error: null,
       pokemons: [],
-      quantityPage: 4,
+      quantityPage: 8,
       skip: 0,
       currentPage: 0,
     };

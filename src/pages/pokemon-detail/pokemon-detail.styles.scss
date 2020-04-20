@@ -1,13 +1,11 @@
 @import './../../assets/scss/variables.scss';
 
-$title-size: 2em;
-
 .pokemon-detail {
   font-family: $font-quicksand;
   .pokemon-detail-wrapper {
     display: grid;
     grid-template-columns: 27vw auto;
-    background: darken($primary-color, 12%);
+    background: darken($primary-color, 30%);
     padding: 15px 0;
     color: #fff;
 
