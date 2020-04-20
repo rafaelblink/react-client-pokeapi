@@ -1,6 +1,7 @@
 import React from 'react';
 import './card-image.styles.scss';
 import axios from 'axios';
+import { URL } from './../../API';
 
 class CardImage extends React.Component {
   constructor(props) {
@@ -16,9 +17,7 @@ class CardImage extends React.Component {
 
   async getPokemonColor(id) {
     try {
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${id}`
-      );
+      const response = await axios.get(`${URL}/pokemon-species/${id}`);
       const { color } = response.data;
       this.setState({ color: color.name });
     } catch (error) {

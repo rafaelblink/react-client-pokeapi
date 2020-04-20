@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import CardImage from '../../components/card-image/card-image.component';
 import './pokemon-detail.styles.scss';
+import { URL } from './../../API';
 
 class PokemonDetailPage extends React.Component {
   constructor(props) {
@@ -15,12 +16,8 @@ class PokemonDetailPage extends React.Component {
     };
   }
   async getPokemonDetail(name) {
-    return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    return axios.get(`${URL}/pokemon/${name}`);
   }
-
-  //   async getPokemonAbilities(url) {
-  //     return await axios.get(url);
-  //   }
 
   setError(error) {
     this.setState({

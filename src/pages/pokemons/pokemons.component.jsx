@@ -4,7 +4,7 @@ import Card from './../../components/card/card.component';
 import './pokemons.styles.scss';
 import { Link } from 'react-router-dom';
 import Button from '../../components/button/button.component';
-
+import { URL } from './../../API';
 class PokemonsPage extends React.Component {
   constructor() {
     super();
@@ -54,13 +54,11 @@ class PokemonsPage extends React.Component {
   }
 
   async getPokemonList(offset, limit) {
-    return axios.get(
-      `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
-    );
+    return axios.get(`${URL}/pokemon?offset=${offset}&limit=${limit}`);
   }
 
   async getPokemonDetail(name) {
-    return axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    return axios.get(`${URL}/pokemon/${name}`);
   }
 
   handlePaginationNext = () => {
