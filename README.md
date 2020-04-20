@@ -1,5 +1,19 @@
 # React Client PokeAPI
 
+## Rodando o projeto
+
+```bash
+git clone https://github.com/rafaelblink/react-client-pokeapi
+
+cd react-client-pokeapi
+
+yarn install && yarn start
+```
+
+## DEMO
+
+https://pacific-springs-96260.herokuapp.com
+
 ## UX
 
 Paleta de Cores
