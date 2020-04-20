@@ -10,6 +10,12 @@ cd react-client-pokeapi
 yarn install && yarn start
 ```
 
+## Rodando os testes E2E
+
+```bash
+yarn cypress
+```
+
 ## DEMO
 
 https://pacific-springs-96260.herokuapp.com
@@ -46,6 +52,7 @@ Algumas considerações:
 - Utilizei axios para as chamadas para a API.
 - Promise.all para controlar as chamadas async.
 - Não utilizei Hooks nem Redux pare controle de estados e side effects pois não foi necessário.
+- Utilizei cypress para realizar testes E2E.
 
 <hr>
 
