@@ -45,7 +45,7 @@ Algumas considerações:
 
 - Utilizei axios para as chamadas para a API.
 - Promise.all para controlar as chamadas async.
-- Não utilizei Hooks nem Redux para controlar side effects pois não foi necessário.
+- Não utilizei Hooks nem Redux pare controle de estados e side effects pois não foi necessário.
 
 <hr>
 
